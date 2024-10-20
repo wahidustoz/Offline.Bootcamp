@@ -131,7 +131,7 @@ public class Arrays
     [InlineData(new int[] { -10, -5, 0, 5 }, new int[] { -10, -5, 0, 5 }, 4)]
     public void TestRemoveDuplicates(int[] array, int[] expectedArray, int expectedLength)
     {
-        int length = this.solutions.RemoveDuplicates(array);
+        int length = Tasks.Arrays.RemoveDuplicates(array);
         Assert.Equal(expectedLength, length);
         for (int i = 0; i < length; i++)
         {
@@ -374,7 +374,7 @@ public class Arrays
         yield return new object[] { new int[,] { { 1, 2 }, { 3, 4 } }, false };
         yield return new object[] { new int[,] { { 1 } }, true };
         yield return new object[] { new int[,] { }, true };
-        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, false };
+        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, true };
         yield return new object[] { new int[,] { { 0, 1 }, { 1, 0 } }, true };
         yield return new object[] { new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, true };
         yield return new object[] { new int[,] { { 1, 2, 3, 4 }, { 2, 1, 5, 6 }, { 3, 5, 1, 7 }, { 4, 6, 7, 1 } }, true };
