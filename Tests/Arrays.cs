@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Xunit;
-
 namespace Offline.Bootcamp.Tests;
 
 public class Arrays
