@@ -60,7 +60,7 @@ public class Arrays
         throw new NotImplementedException();
     }
 
-    public int SumOfEvenNumbers(int[] array)
+    public int SumOfEvenNumbers(int[]? array)
     {
         throw new NotImplementedException();
     }

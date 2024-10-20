@@ -102,7 +102,7 @@ public class Arrays
     [InlineData(new int[] { 0, int.MinValue, int.MaxValue }, int.MinValue)]
     [InlineData(new int[] {  }, typeof(Exception))]
     [InlineData(null, typeof(Exception))]
-    public void TestSumOfEvenNumbers(int[] array, object expected)
+    public void TestSumOfEvenNumbers(int[]? array, object expected)
     {
         if(expected is int exp) 
             Assert.Equal(exp, this.solutions.SumOfEvenNumbers(array));
