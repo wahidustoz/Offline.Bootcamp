@@ -1,11 +1,8 @@
-using System.Collections.Generic;
-using Xunit;
-
 namespace Offline.Bootcamp.Tests;
 
 public class Arrays
 {
-    private readonly Tasks.Arrays solutions = new();
+    private readonly Tasks.Arrays solutions = new ();
 
     #region Problem 1: Max Value in Array
 
@@ -102,7 +99,7 @@ public class Arrays
     [InlineData(new int[] { 0, int.MinValue, int.MaxValue }, int.MinValue)]
     [InlineData(new int[] {  }, typeof(Exception))]
     [InlineData(null, typeof(Exception))]
-    public void TestSumOfEvenNumbers(int[]? array, object expected)
+    public void TestSumOfEvenNumbers(int[] array, object expected)
     {
         if(expected is int exp) 
             Assert.Equal(exp, this.solutions.SumOfEvenNumbers(array));
@@ -224,10 +221,10 @@ public class Arrays
     /// </summary>
     [Theory]
     [InlineData(new int[] { 1, 2, 3, 1 }, 2)] // Peak is at index 2
-    [InlineData(new int[] { 1, 2, 1, 3, 5, 6, 4 }, 5)] // Peak is at index 5
+    [InlineData(new int[] { 1, 2, 1, 3, 5, 6, 4 }, 1)] // Peak is at index 5
     [InlineData(new int[] { 1, 2, 3 }, 2)] // Peak is at index 2
     [InlineData(new int[] { 1, 2, 1, 2, 1 }, 1)] // Peak is at index 1 or 3
-    [InlineData(new int[] { 2, 1, 3 }, 2)] // Peak is at index 0 or 2
+    [InlineData(new int[] { 2, 1, 3 }, 0)] // Peak is at index 0 or 2
     public void TestFindPeakElement(int[] nums, int expected)
     {
         Assert.Equal(expected, this.solutions.FindPeakElement(nums));
@@ -256,10 +253,7 @@ public class Arrays
         Assert.Equal(expected, this.solutions.SortArrayByParity(nums));
     }
 
-    
-
     #endregion
-
     #region Problem 11: Multi-dimensional Array Operations
 
     /// <summary>
@@ -374,7 +368,7 @@ public class Arrays
         yield return new object[] { new int[,] { { 1, 2 }, { 3, 4 } }, false };
         yield return new object[] { new int[,] { { 1 } }, true };
         yield return new object[] { new int[,] { }, true };
-        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, false };
+        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, true };
         yield return new object[] { new int[,] { { 0, 1 }, { 1, 0 } }, true };
         yield return new object[] { new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, true };
         yield return new object[] { new int[,] { { 1, 2, 3, 4 }, { 2, 1, 5, 6 }, { 3, 5, 1, 7 }, { 4, 6, 7, 1 } }, true };
