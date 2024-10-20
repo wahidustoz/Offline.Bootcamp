@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 namespace Offline.Bootcamp.Tasks;
 
 public class Arrays
@@ -47,7 +39,10 @@ public class Arrays
 
     public int[] ReverseArray(int[] array)
     {
-        throw new NotImplementedException();
+        for(int i = 0, j = array.Length - 1; i < j; i++, j--)
+            (array[i], array[j]) = (array[j], array[i]);
+        
+        return array;
     }
 
     public void RotateArray(int[] array, int k)
