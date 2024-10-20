@@ -374,12 +374,16 @@ public class Arrays
         yield return new object[] { new int[,] { { 1, 2 }, { 3, 4 } }, false };
         yield return new object[] { new int[,] { { 1 } }, true };
         yield return new object[] { new int[,] { }, true };
-        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, false };
+        yield return new object[] { new int[,] {{ 1, 2, 3 }, 
+                                                { 2, 4, 5 }, 
+                                                { 3, 5, 7 } }, true };
         yield return new object[] { new int[,] { { 0, 1 }, { 1, 0 } }, true };
         yield return new object[] { new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, true };
         yield return new object[] { new int[,] { { 1, 2, 3, 4 }, { 2, 1, 5, 6 }, { 3, 5, 1, 7 }, { 4, 6, 7, 1 } }, true };
         yield return new object[] { new int[,] { { int.MaxValue, 0 }, { 0, int.MinValue } }, true };
-        yield return new object[] { new int[,] { { 1, 2 }, { 2, 1 }, { 3, 4 } }, false };
+        yield return new object[] { new int[,] { { 1, 2 }, 
+                                                { 2, 1 }, 
+                                                { 3, 4 } }, false };
     }
 
     #endregion

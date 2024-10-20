@@ -1,7 +1,80 @@
+
+
 namespace Offline.Bootcamp.Tasks;
 
 public class Arrays
 {
+    public double AverageOfJaggedArray(int[][] input)
+    {
+        var sum = 0.0;
+        var length = 0;
+
+        for (var i = 0; i < input.Length; i++)
+        {
+            length += input[i].Length;
+            for (var j = 0; j < input[i].Length; j++)
+            {
+                sum += input[i][j];
+            }
+        }
+        return sum / length;
+    }
+    public int[,] RotateMatrix90Degrees(int[,] input)
+    {
+        int rows = input.GetLength(0);
+        int cols = input.GetLength(1);
+
+        int[,] rotatedArray = new int[cols, rows];
+
+        // Rotate the matrix
+        for (var i = 0; i < rows; i++)
+        {
+            for (var j = 0; j < cols; j++)
+            {
+                rotatedArray[j, rows - i - 1] = input[i, j];
+            }
+        }
+
+        return rotatedArray;
+    }
+
+    public int FindLargestElementInMatrix(int[,] input)
+    {
+        int rows = input.GetLength(0);
+        int cols = input.GetLength(1);
+
+        int maxValue = input[0, 0] < 0 ? int.MinValue : 0;
+
+
+        for (var i = 0; i < rows; i++)
+        {
+            for (var j = 0; j < cols; j++)
+            {
+                if (maxValue < input[i, j])
+                {
+                    maxValue = input[i, j];
+                }
+            }
+        }
+        return maxValue;
+    }
+
+    public int FindMaxInJaggedArray(int[][] input)
+    {
+        var maxValue = input[0][0];
+        for (var i = 0; i < input.Length; i++)
+        {
+            for (var j = 0; j < input[i].Length; j++)
+            {
+                if (maxValue < input[i][j])
+                {
+                    maxValue = input[i][j];
+                }
+            }
+        }
+        return maxValue;
+    }
+
     public int FindMissingNumber(int[] nums)
     {
         var expectedSum = nums.Length * (nums.Length + 1) / 2;
@@ -36,6 +109,21 @@ public class Arrays
 
     }
 
+    public int[] FlattenJaggedArray(int[][] input)
+    {
+        List<int> flattenedJaggedArray = [];
+
+        for (var i = 0; i < input.Length; i++)
+        {
+            for (var j = 0; j < input[i].Length; j++)
+            {
+                flattenedJaggedArray.Add(input[i][j]);
+            }
+        }
+
+        return flattenedJaggedArray.ToArray();
+    }
+
     public bool IsArraySorted(int[] array)
     {
         for (var i = 0; i < array.Length-1; i++)
@@ -48,6 +136,49 @@ public class Arrays
         return true;
     }
 
+    public bool IsSymmetricMatrix(int[,] input)
+    {
+        if (input.GetLength(0) != input.GetLength(1))
+            return false;
+
+        for (var i = 0; i < input.GetLength(1); i++)
+        {
+            for (var j = 0; j < input.GetLength(1); j++)
+            {
+                if (input[j, i] != input[i, j])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public string JaggedArrayToString(int[][] input)
+    {
+        var result = "[";
+        for (var i = 0; i < input.Length; i++)
+        {
+            result += "[";
+            for (var j = 0; j < input[i].Length; j++)
+            {
+                result += $"{input[i][j]}";
+                if (j != input[i].Length - 1)
+                {
+                    result += ",";
+                }
+            }
+            result += "]";
+            
+            if (i != input.Length - 1)
+                {
+                    result += ",";
+                }
+        }
+            result += "]";
+        
+        return result;
+    }
 
     public int MaxValueInArray(int[] array)
     {
@@ -163,6 +294,7 @@ public class Arrays
             return array; 
         }
 
+
     public int[] SortArrayByParity(int[] nums)
     {
         var evenNumbers = new List<int>();
@@ -188,6 +320,18 @@ public class Arrays
         return evenNumbers.ToArray();
     }
 
+    public int SumOfDiagonalElements(int[,] input)
+    {
+        var sum = input[0, 0];
+        for (var i = 1; i < input.GetLength(0); i++)
+        {
+            Console.WriteLine(sum);
+            sum += input[i, i];
+        }
+
+        return sum;
+    }
+
     public int SumOfEvenNumbers(int[]? array)
     {
         if (array is null || array.Length == 0)
@@ -211,5 +355,33 @@ public class Arrays
         }
 
         return (int)sum;
+    }
+
+    public int SumOfJaggedArray(int[][] input)
+    {
+        var sum = 0;
+
+        for (var i = 0; i < input.Length; i++)
+        {
+            for (var j = 0; j < input[i].Length; j++)
+            {
+                sum += input[i][j];
+            }
+        }
+
+        return sum;
+    }
+
+    public int[,] TransposeMatrix(int[,] input)
+    {
+        var result = new int[input.GetLength(1), input.GetLength(0)];
+        for (var i = 0; i < input.GetLength(0); i++)
+        {
+            for (var j = 0; j < input.GetLength(1); j++)
+            {
+                result[j, i] = input[i, j];
+            }
+        }
+        return result;
     }
 }
