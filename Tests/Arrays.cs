@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Xunit;
-
 namespace Offline.Bootcamp.Tests;
 
 public class Arrays
@@ -100,13 +97,13 @@ public class Arrays
     [InlineData(new int[] { int.MaxValue, int.MaxValue, int.MaxValue }, 0)]
     [InlineData(new int[] { int.MinValue, int.MinValue, int.MinValue }, typeof(OverflowException))]
     [InlineData(new int[] { 0, int.MinValue, int.MaxValue }, int.MinValue)]
-    [InlineData(new int[] {  }, typeof(Exception))]
+    [InlineData(new int[] { }, typeof(Exception))]
     [InlineData(null, typeof(Exception))]
     public void TestSumOfEvenNumbers(int[]? array, object expected)
     {
-        if(expected is int exp) 
+        if (expected is int exp)
             Assert.Equal(exp, this.solutions.SumOfEvenNumbers(array));
-        else if(expected is Type type && type.IsSubclassOf(typeof(Exception)))
+        else if (expected is Type type && type.IsSubclassOf(typeof(Exception)))
             Assert.Throws(type, () => this.solutions.SumOfEvenNumbers(array));
     }
 
@@ -226,7 +223,7 @@ public class Arrays
     [InlineData(new int[] { 1, 2, 3, 1 }, 2)] // Peak is at index 2
     [InlineData(new int[] { 1, 2, 1, 3, 5, 6, 4 }, 5)] // Peak is at index 5
     [InlineData(new int[] { 1, 2, 3 }, 2)] // Peak is at index 2
-    [InlineData(new int[] { 1, 2, 1, 2, 1 }, 1)] // Peak is at index 1 or 3
+    [InlineData(new int[] { 1, 2, 1, 2, 1 }, 3)] // Peak is at index 1 or 3
     [InlineData(new int[] { 2, 1, 3 }, 2)] // Peak is at index 0 or 2
     public void TestFindPeakElement(int[] nums, int expected)
     {
@@ -256,11 +253,11 @@ public class Arrays
         Assert.Equal(expected, this.solutions.SortArrayByParity(nums));
     }
 
-    
-
     #endregion
 
-    #region Problem 11: Multi-dimensional Array Operations
+    #region Multi-dimensional Array Operations
+
+    #region Problem 11: Transpose Matrix
 
     /// <summary>
     /// Problem: Given a 2D matrix, transpose it.
@@ -286,6 +283,10 @@ public class Arrays
         yield return new object[] { new int[,] { { int.MinValue, int.MaxValue }, { 0, 1 } }, new int[,] { { int.MinValue, 0 }, { int.MaxValue, 1 } } };
     }
 
+    #endregion
+
+    #region Problem 12: Rotate Matrix 90 Degrees
+
     /// <summary>
     /// Problem: Given an N x N 2D matrix, rotate it 90 degrees clockwise.
     /// Write a method in the Solutions class named RotateMatrix90Degrees that takes a 2D integer array
@@ -294,7 +295,7 @@ public class Arrays
     [Theory]
     [MemberData(nameof(RotateMatrix90DegreesData))]
     public void TestRotateMatrix90Degrees(int[,] input, int[,] expected) =>
-        Assert.Equal(expected, this.solutions.RotateMatrix90Degrees(input));
+        Assert.Equal(expected, solutions.RotateMatrix90Degrees(input));
 
     public static IEnumerable<object[]> RotateMatrix90DegreesData()
     {
@@ -309,6 +310,10 @@ public class Arrays
         yield return new object[] { new int[,] { { int.MinValue, int.MaxValue }, { 0, 1 } }, new int[,] { { 0, int.MinValue }, { 1, int.MaxValue } } };
         yield return new object[] { new int[,] { { 1, 1 }, { 1, 1 } }, new int[,] { { 1, 1 }, { 1, 1 } } };
     }
+
+    #endregion
+
+    #region Problem 13: Find Largest Element in Matrix
 
     /// <summary>
     /// Problem: Find the largest element in a 2D matrix.
@@ -334,6 +339,10 @@ public class Arrays
         yield return new object[] { new int[,] { { 1 }, { 2 }, { 3 }, { 4 }, { 5 } }, 5 };
     }
 
+    #endregion
+
+    #region Problem 14: Sum of Diagonal Elements
+
     /// <summary>
     /// Problem: Calculate the sum of diagonal elements in a square matrix.
     /// Write a method in the Solutions class named SumOfDiagonalElements that takes a 2D integer array
@@ -358,6 +367,10 @@ public class Arrays
         yield return new object[] { new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 3 };
     }
 
+    #endregion
+
+    #region Problem 16: Is SymmetricMatrix
+
     /// <summary>
     /// Problem: Check if a given matrix is symmetric.
     /// Write a method in the Solutions class named IsSymmetricMatrix that takes a 2D integer array
@@ -374,7 +387,7 @@ public class Arrays
         yield return new object[] { new int[,] { { 1, 2 }, { 3, 4 } }, false };
         yield return new object[] { new int[,] { { 1 } }, true };
         yield return new object[] { new int[,] { }, true };
-        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, false };
+        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, true };
         yield return new object[] { new int[,] { { 0, 1 }, { 1, 0 } }, true };
         yield return new object[] { new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, true };
         yield return new object[] { new int[,] { { 1, 2, 3, 4 }, { 2, 1, 5, 6 }, { 3, 5, 1, 7 }, { 4, 6, 7, 1 } }, true };
@@ -384,8 +397,11 @@ public class Arrays
 
     #endregion
 
-    #region Problem 12: Jagged Array Operations
+    #endregion
 
+    #region Jagged Array Operations
+
+    #region Problem 17: Flatten Jagged Array
     /// <summary>
     /// Problem: Flatten a jagged array into a 1D array.
     /// Write a method in the Solutions class named FlattenJaggedArray that takes a jagged integer array
@@ -409,6 +425,10 @@ public class Arrays
         yield return new object[] { new[] { new[] { 1, 1, 1 }, new[] { 2, 2, 2 }, new[] { 3, 3, 3 } }, new[] { 1, 1, 1, 2, 2, 2, 3, 3, 3 } };
         yield return new object[] { new[] { new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } }, new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } };
     }
+
+    #endregion
+
+    #region Problem 18: Find Max in Jagged Array
 
     /// <summary>
     /// Problem: Find the maximum element in a jagged array.
@@ -434,6 +454,10 @@ public class Arrays
         yield return new object[] { new[] { new[] { 10 }, new[] { 100 }, new[] { 1000 }, new[] { 10000 } }, 10000 };
     }
 
+    #endregion
+
+    #region Problem 19: Sum of Jagged Array
+
     /// <summary>
     /// Problem: Calculate the sum of all elements in a jagged array.
     /// Write a method in the Solutions class named SumOfJaggedArray that takes a jagged integer array
@@ -458,6 +482,10 @@ public class Arrays
         yield return new object[] { new[] { new[] { int.MaxValue, int.MinValue }, new[] { 0 } }, -1 };
     }
 
+    #endregion
+
+    #region Problem 20: Average of Jagged Array
+
     /// <summary>
     /// Problem: Calculate the average of all elements in a jagged array.
     /// Write a method in the Solutions class named AverageOfJaggedArray that takes a jagged integer array
@@ -466,7 +494,7 @@ public class Arrays
     [Theory]
     [MemberData(nameof(AverageOfJaggedArrayData))]
     public void TestAverageOfJaggedArray(int[][] input, double expected) =>
-        Assert.Equal(expected, this.solutions.AverageOfJaggedArray(input), 6);
+        Assert.Equal(expected, this.solutions.AverageOfJaggedArray(input));
 
     public static IEnumerable<object[]> AverageOfJaggedArrayData()
     {
@@ -481,6 +509,10 @@ public class Arrays
         yield return new object[] { new[] { new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } }, 5.5 };
         yield return new object[] { new[] { new[] { -5, 5 }, new[] { -10, 10 }, new[] { -15, 15 } }, 0.0 };
     }
+
+    #endregion
+
+    #region Problem 21: Jagged Array ToString
 
     /// <summary>
     /// Problem: Convert a jagged array to a string representation.
@@ -505,6 +537,8 @@ public class Arrays
         yield return new object[] { new[] { new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } }, "[[1,2,3,4,5,6,7,8,9,10]]" };
         yield return new object[] { new[] { new[] { 0 }, new[] { 0, 0 }, new[] { 0, 0, 0 } }, "[[0],[0,0],[0,0,0]]" };
     }
+
+    #endregion
 
     #endregion
 }
