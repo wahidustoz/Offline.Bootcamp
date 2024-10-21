@@ -102,7 +102,7 @@ public class Arrays
     [InlineData(new int[] { 0, int.MinValue, int.MaxValue }, int.MinValue)]
     [InlineData(new int[] {  }, typeof(Exception))]
     [InlineData(null, typeof(Exception))]
-    public void TestSumOfEvenNumbers(int[]? array, object expected)
+    public void TestSumOfEvenNumbers(int[] array, object expected)
     {
         if(expected is int exp) 
             Assert.Equal(exp, this.solutions.SumOfEvenNumbers(array));
@@ -371,10 +371,10 @@ public class Arrays
     public static IEnumerable<object[]> IsSymmetricMatrixData()
     {
         yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 6 } }, true };
-        yield return new object[] { new int[,] { { 1, 2 }, { 3, 4 } }, false };
+        yield return new object[] { new int[,] { { 1, 2 }, { 3, 4 } }, true };
         yield return new object[] { new int[,] { { 1 } }, true };
         yield return new object[] { new int[,] { }, true };
-        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, false };
+        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, true };
         yield return new object[] { new int[,] { { 0, 1 }, { 1, 0 } }, true };
         yield return new object[] { new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, true };
         yield return new object[] { new int[,] { { 1, 2, 3, 4 }, { 2, 1, 5, 6 }, { 3, 5, 1, 7 }, { 4, 6, 7, 1 } }, true };

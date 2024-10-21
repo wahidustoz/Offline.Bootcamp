@@ -127,7 +127,7 @@ public class Arrays
 
     public bool IsSymmetricMatrix(int[,] input)
     {
-        if (input.Length == 0 || input.GetLength(0) != 0)
+        if (input.GetLength(0) == 0 || input.GetLength(1) == 0)
             return true;
         int rows = input.GetLength(0);
         int cols = input.GetLength(1);
@@ -298,14 +298,18 @@ public class Arrays
         return sum;
     }
 
-    public long SumOfEvenNumbers(int[] array)
+    public int SumOfEvenNumbers(int[] array)
     {
         // throw new NotImplementedException();
-        long sum = 0;
-        for (int i = 0; i < array.Length; i++ )
-        {
-            if(array[i] % 2 == 0)
-                sum += array[i];
+        int sum = 0;
+        checked{
+            for (int i = 0; i < array.Length; i++ )
+            {
+                if(array[i] % 2 == 0)
+                {   
+                    sum = checked(sum + array[i]);
+                }
+            }
         }
         return sum;
     }
