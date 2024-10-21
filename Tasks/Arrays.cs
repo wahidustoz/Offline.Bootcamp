@@ -1,6 +1,3 @@
-
-
-
 namespace Offline.Bootcamp.Tasks;
 
 public class Arrays
