@@ -41,8 +41,12 @@ public class Arrays
         return true;
     }
 
-    public int SumOfEvenNumbers(int[]? array)
+    public int? SumOfEvenNumbers(int[] array)
     {
+        if (array == null)
+        {
+            return null;
+        }
         int sum = 0;
         for (int i = 0; i < array.Length; i++)
         {
@@ -87,51 +91,61 @@ public class Arrays
     public void RotateArray(int[] array, int k)
     {
         //some problem
-        throw new Exception();
+        if (array == null || array.Length == 0 || k <= 0)
+        {
+            return;
+        }
+
+        int n = array.Length;
+        k %= n;
+
+
+        void Reverse(int start, int end)
+        {
+            while (start < end)
+            {
+                int temp = array[start];
+                array[start] = array[end];
+                array[end] = temp;
+                start++;
+                end--;
+            }
+        }
+
+        Reverse(0, n - 1);
+        Reverse(0, k - 1);
+        Reverse(k, n - 1);
     }
 
     public int[] MergeSortedArrays(int[] array1, int m, int[] array2, int n)
     {
-        //some problem
-        //int o = m - 1;
-        //int j = n - 1;
-        //int k = m + n - 1;
+        int i = m - 1;
+        int j = n - 1;
+        int k = m + n - 1;
 
-        //while (i >= 0 && j >= 0)
-        //{
-        //    if (array1[i] > array2[j])
-        //    {
-        //        array1[k--] = array2[i--];
-        //    }
-        //    else
-        //    {
-        //        array1[k--] = array2[j--];
-        //    }
-        //}
-        bool ozgar = true;
-
-        while (ozgar)
+        while (i >= 0 && j >= 0)
         {
-            ozgar = false;
-            for (int i = 1; i < array1.Length; i++)
+            if (array1[i] > array2[j])
             {
-                if (array1[i - 1] > array1[i])
-                {
-                    var temp = array1[i];
-                    array1[i] = array1[i - 1];
-                    array1[i - 1] = temp;
-                    ozgar = true;
-                }/// 1 5 7 2 68  
+                array1[k] = array1[i];
+                i--;
             }
-
+            else
+            {
+                array1[k] = array2[j];
+                j--;
+            }
+            k--;
         }
 
-        //while (j >= 0)
-        //{
-        //    array1[k--] = array2[j--];
-        //}
+        while (j >= 0)
+        {
+            array1[k] = array2[j];
+            j--;
+            k--;
+        }
+
         return array1;
-        throw new Exception();
     }
 
     public int FindMissingNumber(int[] array)
@@ -171,21 +185,32 @@ public class Arrays
         return indexOfPeak;
     }
 
-    public int[] SortArrayByParity(int[] array)
+    public int[]? SortArrayByParity(int[] array)
     {
-        if (array.Length == 0) return new int[] { };
-        int pointer = 0, temp = 0;
-        for (int i = 0; i < array.Length; i++)
+        if (array == null || array.Length == 0)
         {
-            if (array[i] % 2 == 0)
+            return array;
+        }
+
+        List<int> result = new List<int>();
+
+        foreach (var num in array)
+        {
+            if (num % 2 == 0)
             {
-                temp = array[pointer];
-                array[pointer] = array[i];
-                array[i] = temp;
-                pointer++;
+                result.Add(num);
             }
         }
-        return array;
+
+        foreach (var num in array)
+        {
+            if (num % 2 != 0)
+            {
+                result.Add(num);
+            }
+        }
+
+        return result.ToArray();
 
     }
     public double AverageOfJaggedArray(int[][] input)
@@ -256,17 +281,22 @@ public class Arrays
 
     public bool IsSymmetricMatrix(int[,] input)
     {
-        int rows = input.GetLength(0);
-        int cols = input.GetLength(1);
+        int rowCount = input.GetLength(0);
+        int colCount = input.GetLength(1);
 
-        if (rows != cols) return false;
-
-        for (int i = 0; i < rows; i++)
+        if (rowCount != colCount)
         {
-            for (int j = 0; j < cols; j++)
+            return false;
+        }
+
+        for (int i = 0; i < rowCount; i++)
+        {
+            for (int j = 0; j < i; j++)
             {
                 if (input[i, j] != input[j, i])
+                {
                     return false;
+                }
             }
         }
 
@@ -281,40 +311,42 @@ public class Arrays
 
 
 
-
-
-
-
     public int[,] RotateMatrix90Degrees(int[,] input)
     {
-        int n = input.GetLength(0); // Matritsaning o‘lchami (N x N)
-        int[,] rotated = new int[n, n]; // Natijaviy aylantirilgan matritsa
+        int rowCount = input.GetLength(0);
+        int colCount = input.GetLength(1);
 
-        for (int i = 0; i < n; i++)
+        if (rowCount == 0 || colCount == 0)
         {
-            for (int j = 0; j < n; j++)
+            return input;
+        }
+
+        int[,] rotatedMatrix = new int[colCount, rowCount];
+
+        for (int i = 0; i < rowCount; i++)
+        {
+            for (int j = 0; j < colCount; j++)
             {
-                rotated[j, n - i - 1] = input[i, j];
+                rotatedMatrix[j, rowCount - 1 - i] = input[i, j];
             }
         }
 
-        return rotated;
+        return rotatedMatrix;
     }
 
 
 
     public int SumOfDiagonalElements(int[,] input)
     {
-        int n = input.GetLength(0); 
+        int n = input.GetLength(0);
         int sum = 0;
 
         for (int i = 0; i < n; i++)
         {
-            sum += input[i, i]; 
+            sum += input[i, i];
         }
 
         return sum;
-        throw new NotImplementedException();
     }
 
 
@@ -334,9 +366,9 @@ public class Arrays
 
     public int[,] TransposeMatrix(int[,] input)
     {
-        int rows = input.GetLength(0); 
-        int cols = input.GetLength(1); 
-        int[,] transposed = new int[cols, rows]; 
+        int rows = input.GetLength(0);
+        int cols = input.GetLength(1);
+        int[,] transposed = new int[cols, rows];
 
         for (int i = 0; i < rows; i++)
         {
@@ -347,8 +379,5 @@ public class Arrays
         }
         return transposed;
     }
-
-
-
 
 }
