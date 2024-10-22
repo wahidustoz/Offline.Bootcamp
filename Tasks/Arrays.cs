@@ -41,7 +41,7 @@ public class Arrays
         return true;
     }
 
-    public int SumOfEvenNumbers(int[] array)
+    public int SumOfEvenNumbers(int[]? array)
     {
         int sum = 0;
         for (int i = 0; i < array.Length; i++)
