@@ -100,13 +100,13 @@ public class Arrays
     [InlineData(new int[] { int.MaxValue, int.MaxValue, int.MaxValue }, 0)]
     [InlineData(new int[] { int.MinValue, int.MinValue, int.MinValue }, typeof(OverflowException))]
     [InlineData(new int[] { 0, int.MinValue, int.MaxValue }, int.MinValue)]
-    [InlineData(new int[] {  }, typeof(Exception))]
+    [InlineData(new int[] { }, typeof(Exception))]
     [InlineData(null, typeof(Exception))]
-    public void TestSumOfEvenNumbers(int[]? array, object expected)
+    public void TestSumOfEvenNumbers(int[] array, object expected)
     {
-        if(expected is int exp) 
+        if (expected is int exp)
             Assert.Equal(exp, this.solutions.SumOfEvenNumbers(array));
-        else if(expected is Type type && type.IsSubclassOf(typeof(Exception)))
+        else if (expected is Type type && type.IsSubclassOf(typeof(Exception)))
             Assert.Throws(type, () => this.solutions.SumOfEvenNumbers(array));
     }
 
@@ -256,7 +256,7 @@ public class Arrays
         Assert.Equal(expected, this.solutions.SortArrayByParity(nums));
     }
 
-    
+
 
     #endregion
 
@@ -374,7 +374,7 @@ public class Arrays
         yield return new object[] { new int[,] { { 1, 2 }, { 3, 4 } }, false };
         yield return new object[] { new int[,] { { 1 } }, true };
         yield return new object[] { new int[,] { }, true };
-        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, false };
+        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, true };
         yield return new object[] { new int[,] { { 0, 1 }, { 1, 0 } }, true };
         yield return new object[] { new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, true };
         yield return new object[] { new int[,] { { 1, 2, 3, 4 }, { 2, 1, 5, 6 }, { 3, 5, 1, 7 }, { 4, 6, 7, 1 } }, true };
