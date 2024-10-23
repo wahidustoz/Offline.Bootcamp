@@ -129,7 +129,7 @@ public class Arrays
     [InlineData(new int[] { int.MaxValue, int.MaxValue, int.MaxValue }, new int[] { int.MaxValue }, 1)]
     [InlineData(new int[] { int.MinValue, int.MaxValue }, new int[] { int.MinValue, int.MaxValue }, 2)]
     [InlineData(new int[] { -10, -5, 0, 5 }, new int[] { -10, -5, 0, 5 }, 4)]
-    public void TestRemoveDuplicates(int[] array, int[] expectedArray, int expectedLength)
+    public void TestRemoveDuplicates(int[] array, int[] expectedArray, int expectedLength) 
     {
         int length = this.solutions.RemoveDuplicates(array);
         Assert.Equal(expectedLength, length);
@@ -158,7 +158,7 @@ public class Arrays
     [InlineData(new int[] { -5, -5, -5, -5 }, 3, new int[] { -5, -5, -5, -5 })]
     [InlineData(new int[] { int.MaxValue, int.MaxValue, int.MaxValue }, 1, new int[] { int.MaxValue, int.MaxValue, int.MaxValue })]
     [InlineData(new int[] { int.MinValue, int.MaxValue }, 1, new int[] { int.MaxValue, int.MinValue })]
-    public void TestRotateArray(int[] array, int k, int[] expected)
+    public void TestRotateArray(int[] array, int k, int[] expected)  // 4 skipped
     {
         this.solutions.RotateArray(array, k);
         Assert.Equal(expected, array);
@@ -183,7 +183,7 @@ public class Arrays
     [InlineData(new int[] { 1, 2, 3, 0, 0, 0 }, 3, new int[] { -1, 0, 4 }, 3, new int[] { -1, 0, 1, 2, 3, 4 })]
     [InlineData(new int[] { 4, 5, 6, 0, 0, 0 }, 3, new int[] { 1, 2, 3 }, 3, new int[] { 1, 2, 3, 4, 5, 6 })]
     [InlineData(new int[] { }, 0, new int[] { }, 0, new int[] { })]
-    public void TestMergeSortedArrays(int[] nums1, int m, int[] nums2, int n, int[] expected)
+    public void TestMergeSortedArrays(int[] nums1, int m, int[] nums2, int n, int[] expected) // 4
     {
         this.solutions.MergeSortedArrays(nums1, m, nums2, n);
         Assert.Equal(expected, nums1);
@@ -374,7 +374,7 @@ public class Arrays
         yield return new object[] { new int[,] { { 1, 2 }, { 3, 4 } }, false };
         yield return new object[] { new int[,] { { 1 } }, true };
         yield return new object[] { new int[,] { }, true };
-        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, false };
+        yield return new object[] { new int[,] { { 1, 2, 3 }, { 2, 4, 5 }, { 3, 5, 7 } }, true }; //Tuzatish kiritildi true ga ozgartirildi
         yield return new object[] { new int[,] { { 0, 1 }, { 1, 0 } }, true };
         yield return new object[] { new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, true };
         yield return new object[] { new int[,] { { 1, 2, 3, 4 }, { 2, 1, 5, 6 }, { 3, 5, 1, 7 }, { 4, 6, 7, 1 } }, true };
